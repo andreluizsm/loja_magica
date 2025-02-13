@@ -26,5 +26,27 @@ class Cliente {
         $result = $conn->query("SELECT * FROM clientes ORDER BY id DESC");
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public static function buscarPorId($id) {
+        $conn = Database::getInstance();
+        $stmt = $conn->prepare("SELECT * FROM clientes WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_assoc();
+    }
+
+    public static function atualizar($id, $nome, $email, $data_ultimo_pedido, $valor_ultimo_pedido) {
+        $conn = Database::getInstance();
+        $stmt = $conn->prepare("UPDATE clientes SET nome = ?, email = ?, data_ultimo_pedido = ?, valor_ultimo_pedido = ? WHERE id = ?");
+        $stmt->bind_param("ssssi", $nome, $email, $data_ultimo_pedido, $valor_ultimo_pedido, $id);
+        return $stmt->execute();
+    }
+
+    public static function excluir($id) {
+        $conn = Database::getInstance();
+        $stmt = $conn->prepare("DELETE FROM clientes WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        return $stmt->execute();
+    }
 }
-?>
+
