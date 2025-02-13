@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Clientes</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="public\styles.css">
 </head>
 <body>
     <h1>Lista de Clientes</h1>

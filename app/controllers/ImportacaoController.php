@@ -23,6 +23,7 @@ class ImportacaoController {
             $worksheet = $spreadsheet->getActiveSheet();
 
             $success = 0;
+            $duplicados = 0;
             foreach ($worksheet->getRowIterator(2) as $row) {
                 $cells = [];
                 foreach ($row->getCellIterator() as $cell) {
@@ -30,15 +31,20 @@ class ImportacaoController {
                 }
 
                 if (count($cells) >= 4) {
-                    if (Cliente::inserir($cells[0], $cells[1], $cells[2], $cells[3])) {
+                    $nome = $cells[1] ?? null;
+                    $email = $cells[2] ?? null;
+                    $data_ultimo_pedido = $cells[5] ?? null;
+                    $valor_ultimo_pedido = $cells[6] ?? null;
+
+                    if (Cliente::inserir($nome, $email, $data_ultimo_pedido, $valor_ultimo_pedido)) {
                         $success++;
+                    } else {
+                        $duplicados++;
                     }
                 }
             }
 
-            // Redireciona corretamente para a página de clientes
-            header("Location: /loja_magica/public/index.php?page=clientes&importados=$success");
-            exit;
+            echo "Importação concluída! $success clientes adicionados. $duplicados já existiam.";
         } catch (Exception $e) {
             echo "Erro ao processar o arquivo: " . $e->getMessage();
         }

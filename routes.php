@@ -5,7 +5,8 @@ require_once 'app/controllers/ImportacaoController.php';
 $page = isset($_GET['page']) ? $_GET['page'] : 'clientes';
 
 if ($page === 'importar' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    (new ImportacaoController())->importarClientes();
+    $import = new ImportacaoController();
+    $import->importarClientes();
 } elseif ($page === 'clientes') {
     (new ClienteController())->listar();
 } elseif ($page === 'importar') {
@@ -13,4 +14,4 @@ if ($page === 'importar' && $_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     echo "Página não encontrada!";
 }
-?>
+
