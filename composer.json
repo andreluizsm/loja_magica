@@ -1,0 +1,17 @@
+{
+    "name": "andre/loja_magica",
+    "autoload": {
+        "psr-4": {
+            "Andre\\LojaMagica\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Andre",
+            "email": "andreluizselestino@gmail.com"
+        }
+    ],
+    "require": {
+        "phpoffice/phpspreadsheet": "1.15"
+    }
+}

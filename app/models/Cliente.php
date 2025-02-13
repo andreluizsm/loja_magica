@@ -1,17 +1,18 @@
 <?php
-require_once __DIR__ . '/../config/database.php';
+require_once 'Database.php';
 
 class Cliente {
-    public static function listarTodos() {
-        global $pdo;
-        $stmt = $pdo->query("SELECT * FROM clientes ORDER BY nome");
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    public static function inserir($nome, $email, $telefone, $endereco) {
+        $conn = Database::getInstance();
+        $stmt = $conn->prepare("INSERT INTO clientes (nome, email, telefone, endereco) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $nome, $email, $telefone, $endereco);
+        return $stmt->execute();
     }
 
-    public static function adicionar($nome, $email, $telefone, $endereco) {
-        global $pdo;
-        $stmt = $pdo->prepare("INSERT INTO clientes (nome, email, telefone, endereco) VALUES (?, ?, ?, ?)");
-        return $stmt->execute([$nome, $email, $telefone, $endereco]);
+    public static function listar() {
+        $conn = Database::getInstance();
+        $result = $conn->query("SELECT * FROM clientes ORDER BY id DESC");
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 }
 ?>
