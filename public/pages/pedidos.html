@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gerenciar Pedidos</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-dark bg-secondary">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="bi bi-arrow-left"></i> Loja Mágica
+      </a>
+    </div>
+  </nav>
+
+  <!-- Container principal -->
+  <div class="container mt-4">
+    <h1 class="text-center mb-4">Gerenciamento de Pedidos</h1>
+    
+    <!-- Tabela de Pedidos -->
+    <div class="table-responsive mb-4">
+      <table class="table table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Produtos</th>
+            <th>Data</th>
+            <th>Valor</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="pedidosTable">
+          <!-- Linhas serão geradas via JavaScript -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Botão para abrir o modal para novo pedido -->
+    <div class="text-center mb-4">
+      <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#pedidoModal">
+        <i class="bi bi-plus-circle"></i> Novo Pedido
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal para Inserir/Editar Pedido -->
+  <div class="modal fade" id="pedidoModal" tabindex="-1" aria-labelledby="pedidoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="pedidoModalLabel">Novo Pedido</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <form id="pedidoFormModal">
+            <input type="hidden" id="pedidoIdModal">
+            <div class="mb-3">
+              <label for="modalClienteId" class="form-label">Cliente ID:</label>
+              <input type="number" class="form-control" id="modalClienteId" placeholder="Digite o ID do cliente" required>
+            </div>
+            <div class="mb-3">
+              <label for="modalProdutos" class="form-label">Produtos:</label>
+              <input type="text" class="form-control" id="modalProdutos" placeholder="Digite os produtos" required>
+            </div>
+            <div class="mb-3">
+              <label for="modalDataPedido" class="form-label">Data do Pedido:</label>
+              <input type="date" class="form-control" id="modalDataPedido">
+            </div>
+            <div class="mb-3">
+              <label for="modalValor" class="form-label">Valor:</label>
+              <input type="number" class="form-control" id="modalValor" placeholder="Digite o valor" step="0.01" required>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" id="salvarPedidoModalBtn">Salvar Pedido</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap Bundle JS (inclui Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Script customizado para pedidos -->
+  <script src="../assets/js/pedidos.js"></script>
+</body>
+</html>
