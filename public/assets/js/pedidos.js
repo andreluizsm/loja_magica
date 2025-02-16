@@ -1,4 +1,5 @@
 const API_PEDIDOS = "http://localhost/loja_magica/api/pedidos.php";
+const API_CLIENTES = "http://localhost/loja_magica/api/clientes.php";
 
 $(document).ready(function() {
     carregarPedidos();
@@ -22,6 +23,18 @@ $(document).ready(function() {
         let id = $(this).data('id');
         excluirPedido(id);
     });
+    
+    // Carrega o select de clientes sempre que o modal for aberto
+    $('#pedidoModal').on('show.bs.modal', function () {
+        carregarClientesSelect();
+    });
+
+    $('#pedidoModal').on('hidden.bs.modal', function () {
+        $(this).find('form')[0].reset();
+        $("#pedidoIdModal").val("");
+        $("#modalClienteId").prop("disabled", false); // Reabilita o dropdown para novo pedido
+        $("#pedidoModalLabel").text("Novo Pedido");
+    });
 });
 
 function carregarPedidos() {
@@ -31,7 +44,7 @@ function carregarPedidos() {
             tabela.append(`
                 <tr>
                     <td>${pedido.id}</td>
-                    <td>${pedido.cliente_nome} (ID: ${pedido.cliente_id})</td>
+                    <td>${pedido.cliente_nome}</td>
                     <td>${pedido.produtos}</td>
                     <td>${pedido.data_pedido ? pedido.data_pedido : '-'}</td>
                     <td>$${pedido.valor}</td>
@@ -58,11 +71,18 @@ function carregarPedidos() {
 
 function salvarPedidoModal() {
     let id = $("#pedidoIdModal").val();
+
+    // Temporariamente reabilita o select para obter o valor
+    $("#modalClienteId").prop("disabled", false);
+    let cliente_id = parseInt($("#modalClienteId").val(), 10);
+    // Reabilita novamente o select se ele estava desabilitado (modo edição)
+    $("#modalClienteId").prop("disabled", true);
+
     let pedido = {
-        cliente_id: $("#modalClienteId").val(),
+        cliente_id: cliente_id,
         produtos: $("#modalProdutos").val(),
         data_pedido: $("#modalDataPedido").val() || null,
-        valor: $("#modalValor").val()
+        valor: parseFloat($("#modalValor").val())
     };
 
     let metodo = id ? "PUT" : "POST";
@@ -76,11 +96,9 @@ function salvarPedidoModal() {
         contentType: "application/json",
         data: JSON.stringify(pedido),
         success: function() {
-            // Fecha o modal
             let modalEl = document.getElementById('pedidoModal');
             let modal = bootstrap.Modal.getOrCreateInstance(modalEl);
             modal.hide();
-            // Reseta o formulário do modal
             $("#pedidoFormModal")[0].reset();
             $("#pedidoIdModal").val("");
             carregarPedidos();
@@ -113,4 +131,13 @@ function editarPedido(id, cliente_id, produtos, data_pedido, valor) {
     let modalEl = document.getElementById('pedidoModal');
     let modal = bootstrap.Modal.getOrCreateInstance(modalEl);
     modal.show();
+}
+function carregarClientesSelect() {
+    $.get(API_CLIENTES, function(clientes) {
+        let select = $("#modalClienteId").empty();
+        select.append('<option value="">Selecione um cliente</option>');
+        clientes.forEach(function(cliente) {
+            select.append(`<option value="${cliente.id}">${cliente.nome} (${cliente.email})</option>`);
+        });
+    });
 }
