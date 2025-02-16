@@ -8,6 +8,12 @@ header("Access-Control-Allow-Headers: Content-Type");
 
 $method = $_SERVER['REQUEST_METHOD'];
 
+
+if ($method === 'OPTIONS') {
+    header("HTTP/1.1 200 OK");
+    exit;
+}
+
 if ($method === 'GET') {
     echo json_encode(Cliente::listar());
     exit;
@@ -26,8 +32,8 @@ if ($method === 'PUT') {
 }
 
 if ($method === 'DELETE') {
-    parse_str(file_get_contents("php://input"), $data);
-    echo json_encode(["success" => Cliente::excluir($data['id'])]);
+    $id = isset($_GET['id']) ? $_GET['id'] : null;
+    echo json_encode(["success" => Cliente::excluir($id)]);
     exit;
 }
 

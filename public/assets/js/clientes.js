@@ -33,18 +33,24 @@ function carregarClientes() {
                     <td>${cliente.nome}</td>
                     <td>${cliente.email}</td>
                     <td>
-                        <button class="btn btn-sm btn-outline-warning editar-btn" data-id="${cliente.id}" data-nome="${cliente.nome}" data-email="${cliente.email}">
-                            <i class="bi bi-pencil-fill"></i>
-                        </button>
-                        <button class="btn btn-sm btn-outline-danger excluir-btn" data-id="${cliente.id}">
-                            <i class="bi bi-trash-fill"></i>
-                        </button>
+                        <div class="d-flex gap-2 justify-content-center">
+                            <button class="btn btn-sm btn-outline-warning editar-btn" 
+                                    data-id="${cliente.id}" 
+                                    data-nome="${cliente.nome}" 
+                                    data-email="${cliente.email}">
+                                <i class="bi bi-pencil-fill"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger excluir-btn" data-id="${cliente.id}">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+                        </div>
                     </td>
                 </tr>
             `);
         });
     });
 }
+
 
 function salvarClienteModal() {
     let id = $("#clienteIdModal").val();

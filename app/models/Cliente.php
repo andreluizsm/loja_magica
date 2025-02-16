@@ -13,7 +13,7 @@ class Cliente {
     
     public static function listar() {
         $conn = self::conectar();
-        $result = $conn->query("SELECT * FROM clientes ORDER BY id DESC");
+        $result = $conn->query("SELECT * FROM clientes ORDER BY nome ASC");
         $clientes = $result->fetch_all(MYSQLI_ASSOC);
         $conn->close();
         return $clientes;

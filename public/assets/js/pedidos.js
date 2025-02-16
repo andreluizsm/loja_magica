@@ -72,11 +72,16 @@ function carregarPedidos() {
 function salvarPedidoModal() {
     let id = $("#pedidoIdModal").val();
 
-    // Temporariamente reabilita o select para obter o valor
-    $("#modalClienteId").prop("disabled", false);
-    let cliente_id = parseInt($("#modalClienteId").val(), 10);
-    // Reabilita novamente o select se ele estava desabilitado (modo edição)
-    $("#modalClienteId").prop("disabled", true);
+    // Obtém o valor do dropdown (já que o dropdown permanece ativo)
+    let cliente_id = $("#modalClienteId").val();
+    
+    // Validação: se não houver um cliente selecionado, interrompe e exibe um alerta
+    if (!cliente_id) {
+        alert("Selecione um cliente válido!");
+        return;
+    }
+    
+    cliente_id = parseInt(cliente_id, 10);
 
     let pedido = {
         cliente_id: cliente_id,
@@ -108,6 +113,7 @@ function salvarPedidoModal() {
         }
     });
 }
+
 
 function excluirPedido(id) {
     if (!confirm("Deseja excluir este pedido?")) return;

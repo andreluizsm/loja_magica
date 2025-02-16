@@ -18,7 +18,7 @@ class Pedido {
             SELECT pedidos.*, clientes.nome AS cliente_nome 
             FROM pedidos 
             JOIN clientes ON pedidos.cliente_id = clientes.id
-            ORDER BY pedidos.data_pedido DESC
+            ORDER BY pedidos.data_pedido
         ");
         $pedidos = $result->fetch_all(MYSQLI_ASSOC);
         $conn->close();
