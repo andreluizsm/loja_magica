@@ -8,6 +8,22 @@ Este é um projeto para a Loja Mágica de Tecnologia, implementando um sistema c
 - **Integração com XML:** Importação de pedidos de lojas parceiras via arquivo XML, com processamento e inserção em tabela.
 - **Gerenciamento de Lojas (Pedidos Parceiros):** Exibição dos dados únicos das lojas extraídos dos pedidos parceiros, com opções de edição, exclusão e um botão "Adicionar Tabela" para redirecionar à página de inserção XML.
 
+
+---
+
+
+## Arquitetura do Projeto
+
+A arquitetura adotada é baseada em um padrão bastante comum que combina conceitos do padrão MVC (Model-View-Controller) com uma abordagem RESTful.
+
+- **Camada de Modelos:** Responsável pelo acesso e manipulação dos dados (banco de dados).
+- **Camada de API/Controladores:** Os endpoints (em arquivos PHP) atuam como controladores, recebendo requisições HTTP e interagindo com os modelos para realizar operações (CRUD).
+- **Camada de Front-End:** A interface do usuário (HTML, CSS e JavaScript) consome os endpoints da API via AJAX, desacoplando a apresentação da lógica de negócio.
+
+Essa separação de responsabilidades, também conhecida como arquitetura em camadas, é bastante comum em aplicações web modernas, pois facilita a manutenção, a escalabilidade e a segurança do sistema.
+
+
+
 ---
 
 
@@ -23,7 +39,6 @@ Este é um projeto para a Loja Mágica de Tecnologia, implementando um sistema c
 
 
 ---
-
 
 
 ## Instalação e Configuração
