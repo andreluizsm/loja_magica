@@ -15,7 +15,6 @@ $(document).ready(function(){
       processData: false,
       contentType: false,
       success: function(response) {
-        // Se a resposta for uma string, tenta convertê-la para objeto
         if (typeof response === "string") {
           try {
             response = JSON.parse(response);
@@ -23,20 +22,36 @@ $(document).ready(function(){
             response = { error: "Erro ao processar resposta" };
           }
         }
-        
-        // Verifica se há erro relacionado ao SMTP
-        if(response.error && response.error.toLowerCase().includes("smtp")) {
-          $("#resultado").html('<div class="alert alert-danger" role="alert">Erro: Falta a configuração do servidor SMTP.</div>');
-        } else if(response.success) {
-          $("#resultado").html('<div class="alert alert-success" role="alert">E-mails enviados com sucesso!</div>');
+        if (response.error) {
+          // Exibe mensagem de erro ou mensagem de teste
+          $("#resultado").html(`
+            <div class="alert alert-danger" role="alert">
+              ${response.error}
+            </div>
+          `);
+        } else if (response.success) {
+          $("#resultado").html(`
+            <div class="alert alert-success" role="alert">
+              ${response.mensagem}
+            </div>
+          `);
         } else {
-          $("#resultado").html('<div class="alert alert-danger" role="alert">Erro: ' + (response.error || "Erro desconhecido") + '</div>');
+          // Caso inesperado
+          $("#resultado").html(`
+            <div class="alert alert-danger" role="alert">
+              Erro desconhecido.
+            </div>
+          `);
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        $("#resultado").html('<div class="alert alert-danger" role="alert">Erro ao enviar arquivo: ' + errorThrown + '</div>');
+        $("#resultado").html(`
+          <div class="alert alert-danger" role="alert">
+            Erro ao enviar: ${errorThrown}
+          </div>
+        `);
       }
-    });
+    });   
   });
 });
 
