@@ -26,21 +26,6 @@ Este é um projeto para a Loja Mágica de Tecnologia, implementando um sistema c
 
 
 
-## Requisitos
-
-- PHP 7.x ou superior  
-- MySQL  
-- XAMPP (ou outro servidor local)  
-- Composer  
-- Extensões PHP: ext-mysqli, ext-gd, ext-zip  
-- PHPMailer (instalado via Composer)
-
-
-
----
-
-
-
 ## Instalação e Configuração
 
 1. **Clone o Repositório:**
@@ -60,4 +45,4 @@ Este é um projeto para a Loja Mágica de Tecnologia, implementando um sistema c
 
 4. **Acesse o Projeto:**
 
-   http://localhost/loja_magica/public/
+http://localhost/loja_magica/public/pages/
