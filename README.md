@@ -1,4 +1,4 @@
-# Loja Mágica - Projeto de Desafio Técnico
+# Loja Mágica
 
 Este é um projeto para a Loja Mágica de Tecnologia, implementando um sistema completo de gestão com as seguintes funcionalidades:
 
