@@ -42,8 +42,8 @@ $fullMessage = "<h2>E-mail Encantado</h2><p>{$message}</p>";
 // Configuração do SMTP (exemplo com Gmail)
 $smtpHost = 'smtp.gmail.com';
 $smtpPort = 587;
-$smtpUsername = 'seu_email@gmail.com';    // Seu e-mail
-$smtpPassword = 'sua_senha_app';         // Sua senha ou App Password do Gmail
+$smtpUsername = '';    // Seu e-mail
+$smtpPassword = '';    // Sua senha 
 
 $sentCount = 0;
 

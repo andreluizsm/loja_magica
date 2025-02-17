@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $("#xmlForm").submit(function(e){
-        e.preventDefault(); // Impede o envio padrão do formulário
+        e.preventDefault(); // nao deixa envio padrao
 
         var formData = new FormData(this);
 
@@ -11,7 +11,7 @@ $(document).ready(function(){
           processData: false,
           contentType: false,
           success: function(response) {
-            // Tenta converter a resposta para objeto, se necessário
+
             if (typeof response === "string") {
               try {
                 response = JSON.parse(response);

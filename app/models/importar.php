@@ -14,7 +14,7 @@ class Importar {
      */
     public static function importarCliente($nome, $email) {
         if (!$nome || !$email) {
-            return ['id' => 0, 'novo' => false]; // Dados insuficientes para criar cliente
+            return ['id' => 0, 'novo' => false];
         }
 
         $conn = self::conectar();
@@ -31,7 +31,7 @@ class Importar {
             return ['id' => $idExistente, 'novo' => false];
         }
 
-        // Insere um novo cliente
+        // Insere novo cliente
         $stmt = $conn->prepare("INSERT INTO clientes (nome, email) VALUES (?, ?)");
         $stmt->bind_param("ss", $nome, $email);
         $stmt->execute();
@@ -39,7 +39,7 @@ class Importar {
     }
 
     /**
-     * Insere um pedido, evitando duplicação.
+     * Insere um pedido,sem duplicar.
      * Se já existir um pedido com os mesmos dados (cliente_id, produto, data e valor), não insere.
      */
     public static function importarPedido($cliente_id, $produto, $data_pedido, $valor) {
@@ -51,7 +51,7 @@ class Importar {
         $stmt->execute();
         $stmt->store_result();
         if ($stmt->num_rows > 0) {
-            return false; // Pedido já existe
+            return false;
         }
         
         // Insere o novo pedido

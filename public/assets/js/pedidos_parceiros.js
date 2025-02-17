@@ -3,12 +3,11 @@ const API_PEDIDOS_PARCEIROS = "http://localhost/loja_magica/api/pedidos_parceiro
 $(document).ready(function() {
     carregarPedidosParceiros();
 
-    // Evento para salvar pedido parceiro via modal
+    // salvar cliente pelo modal
     $("#salvarPedidoParceiroModalBtn").click(function() {
         salvarPedidoParceiroModal();
     });
 
-    // Event delegation para os botões de editar e excluir
     $(document).on('click', '.editar-pedido-parceiro-btn', function() {
         let id = $(this).data('id');
         let id_loja = $(this).data('id_loja');

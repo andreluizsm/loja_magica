@@ -13,7 +13,7 @@ class Pedido {
     
     public static function listar() {
         $conn = self::conectar();
-        // Junta o pedido com o nome do cliente para exibição
+        // Junta o pedido e o nome do cliente
         $result = $conn->query("
             SELECT pedidos.*, clientes.nome AS cliente_nome 
             FROM pedidos 

@@ -1,16 +1,14 @@
-/* Ajuste da Navbar */
 .navbar {
-    justify-content: center !important; /* Centraliza a Navbar */
+    justify-content: center !important;
 }
 
 .navbar-brand {
     font-size: 24px;
     font-weight: bold;
     text-align: center;
-    width: 100%; /* Garante que o nome da loja fique centralizado */
+    width: 100%;
 }
 
-/* Ajustes gerais */
 body {
     background-color: #f8f9fa;
 }

@@ -3,12 +3,11 @@ const API_URL = "http://localhost/loja_magica/api/clientes.php";
 $(document).ready(function() {
     carregarClientes();
 
-    // Evento para salvar cliente via modal
+    // salvar cliente pelo modal
     $("#salvarClienteModalBtn").click(function() {
         salvarClienteModal();
     });
 
-    // Delegated event for edit button
     $(document).on('click', '.editar-btn', function() {
         let id = $(this).data('id');
         let nome = $(this).data('nome');
@@ -16,7 +15,6 @@ $(document).ready(function() {
         editarCliente(id, nome, email);
     });
 
-    // Delegated event for delete button
     $(document).on('click', '.excluir-btn', function() {
         let id = $(this).data('id');
         excluirCliente(id);
@@ -69,12 +67,12 @@ function salvarClienteModal() {
         type: metodo,
         contentType: "application/json",
         data: JSON.stringify(cliente),
-        success: function() {
-            // Fecha o modal
+        success: function() { 
+            
             let modalEl = document.getElementById('clienteModal');
             let modal = bootstrap.Modal.getOrCreateInstance(modalEl);
             modal.hide();
-            // Reseta o formulário do modal
+
             $("#clienteFormModal")[0].reset();
             $("#clienteIdModal").val("");
             carregarClientes();

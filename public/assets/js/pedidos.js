@@ -4,12 +4,11 @@ const API_CLIENTES = "http://localhost/loja_magica/api/clientes.php";
 $(document).ready(function() {
     carregarPedidos();
 
-    // Evento para salvar pedido via modal
+    // salvar cliente pelo modal
     $("#salvarPedidoModalBtn").click(function() {
         salvarPedidoModal();
     });
 
-    // Event delegation para os botões de editar e excluir
     $(document).on('click', '.editar-pedido-btn', function() {
         let id = $(this).data('id');
         let clienteId = $(this).data('cliente_id');
@@ -72,10 +71,9 @@ function carregarPedidos() {
 function salvarPedidoModal() {
     let id = $("#pedidoIdModal").val();
 
-    // Obtém o valor do dropdown (já que o dropdown permanece ativo)
     let cliente_id = $("#modalClienteId").val();
     
-    // Validação: se não houver um cliente selecionado, interrompe e exibe um alerta
+    // se não tiver um cliente selecionado para e exibe um alerta
     if (!cliente_id) {
         alert("Selecione um cliente válido!");
         return;

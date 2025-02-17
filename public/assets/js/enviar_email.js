@@ -4,7 +4,7 @@ $(document).ready(function(){
   carregarClientesSelect();
   
   $("#emailForm").submit(function(e){
-    e.preventDefault(); // Impede o envio padrão
+    e.preventDefault(); // nao deixa envio padrao
 
     var formData = new FormData(this);
 

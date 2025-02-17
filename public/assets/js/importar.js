@@ -25,7 +25,7 @@ function importarArquivo() {
         contentType: false,
         processData: false,
         success: function(response) {
-            // Se a resposta vier como string, tenta converter para objeto
+
             if (typeof response === 'string') {
                 try {
                     response = JSON.parse(response);
@@ -34,7 +34,7 @@ function importarArquivo() {
                 }
             }
 
-            // Cria um <span> para exibir a mensagem
+            // <span> para exibir a mensagem
             let messageSpan = $('<span></span>');
             if (response.success) {
                 messageSpan

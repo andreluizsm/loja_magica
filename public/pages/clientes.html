@@ -5,18 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gerenciar Clientes</title>
   
-  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="../assets/css/styles.css">
-  <!-- jQuery (necessário para os scripts) -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
-  <!-- Navbar -->
+  <!-- barra navegação -->
   <nav class="navbar navbar-dark bg-primary">
     <div class="container">
       <a class="navbar-brand" href="index.html">
@@ -25,11 +21,11 @@
     </div>
   </nav>
 
-  <!-- Container principal -->
+  <!-- parte principal -->
   <div class="container mt-4">
     <h1 class="text-center mb-4">Gerenciamento de Clientes</h1>
     
-    <!-- Tabela de Clientes -->
+    <!-- tabela -->
     <div class="table-responsive mb-4">
       <table class="table table-striped">
         <thead class="table-dark">
@@ -41,12 +37,12 @@
           </tr>
         </thead>
         <tbody id="clientesTable">
-          <!-- Linhas serão geradas via JavaScript -->
+          <!-- linhas da tabeal geradas pelo js -->
         </tbody>
       </table>
     </div>
 
-    <!-- Botão para abrir o modal para novo cliente -->
+    <!--abre o modal para novo cliente -->
     <div class="text-center mb-4">
       <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#clienteModal">
         <i class="bi bi-plus-circle"></i> Novo Cliente
@@ -54,7 +50,7 @@
     </div>
   </div>
 
-  <!-- Modal para Inserir/Editar Cliente -->
+  <!-- modal para Inserir/Editar Cliente -->
   <div class="modal fade" id="clienteModal" tabindex="-1" aria-labelledby="clienteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -83,9 +79,7 @@
     </div>
   </div>
 
-  <!-- Bootstrap Bundle JS (inclui Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Script customizado para clientes -->
   <script src="../assets/js/clientes.js"></script>
 </body>
 </html>
