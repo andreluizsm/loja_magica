@@ -45,5 +45,17 @@ class Cliente {
         $conn->close();
         return $result;
     }
+
+    public static function buscarPorId($id) {
+        $conn = self::conectar();
+        $stmt = $conn->prepare("SELECT * FROM clientes WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $cliente = $result->fetch_assoc();
+        $conn->close();
+        return $cliente;
+    }
+    
 }
 ?>

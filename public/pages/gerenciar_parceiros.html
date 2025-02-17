@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gerenciar Pedidos Parceiros</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-warning bg-warning">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="bi bi-arrow-left"></i> Loja Mágica
+      </a>
+    </div>
+  </nav>
+  
+  <!-- Container principal -->
+  <div class="container mt-4">
+    <h1 class="text-center mb-4">Gerenciar Pedidos Parceiros</h1>
+    
+
+    
+    <!-- Tabela de Pedidos Parceiros -->
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th>ID</th>
+            <th>ID Loja</th>
+            <th>Nome da Loja</th>
+            <th>Localização</th>
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="pedidosParceirosTable">
+          <!-- Linhas serão carregadas via JavaScript -->
+        </tbody>
+      </table>
+    </div> 
+
+    <div class="d-flex justify-content-start mb-3">
+      <a href="integrar_xml.html" class="btn btn-warning btn-lg">
+        <i class="bi bi-plus-circle"></i> Adicionar Tabela
+      </a>
+    </div>
+  </div>
+  
+  <!-- Modal para Inserir/Editar Pedido Parceiro -->
+  <div class="modal fade" id="pedidoParceiroModal" tabindex="-1" aria-labelledby="pedidoParceiroModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="pedidoParceiroModalLabel">Novo Pedido Parceiro</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <form id="pedidoParceiroFormModal">
+            <input type="hidden" id="pedidoParceiroIdModal">
+            <div class="mb-3">
+              <label for="modalIdLojaParceiro" class="form-label">ID Loja:</label>
+              <input type="text" class="form-control" id="modalIdLojaParceiro" placeholder="Digite o ID da loja" required>
+            </div>
+            <div class="mb-3">
+              <label for="modalNomeLojaParceiro" class="form-label">Nome da Loja:</label>
+              <input type="text" class="form-control" id="modalNomeLojaParceiro" placeholder="Digite o nome da loja" required>
+            </div>
+            <div class="mb-3">
+              <label for="modalLocalizacaoParceiro" class="form-label">Localização:</label>
+              <input type="text" class="form-control" id="modalLocalizacaoParceiro" placeholder="Digite a localização" required>
+            </div>
+            <div class="mb-3">
+              <label for="modalProdutoParceiro" class="form-label">Produto:</label>
+              <input type="text" class="form-control" id="modalProdutoParceiro" placeholder="Digite o produto" required>
+            </div>
+            <div class="mb-3">
+              <label for="modalQuantidadeParceiro" class="form-label">Quantidade:</label>
+              <input type="number" class="form-control" id="modalQuantidadeParceiro" placeholder="Digite a quantidade" required>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" id="salvarPedidoParceiroModalBtn">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Bootstrap Bundle JS (inclui Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Script customizado para pedidos parceiros -->
+  <script src="../assets/js/pedidos_parceiros.js"></script>
+  
+  <script>
+    $('#pedidoParceiroModal').on('hidden.bs.modal', function () {
+      $(this).find('form')[0].reset();
+      $("#pedidoParceiroIdModal").val("");
+      $("#pedidoParceiroModalLabel").text("Novo Pedido Parceiro");
+    });
+  </script>
+</body>
+</html>
